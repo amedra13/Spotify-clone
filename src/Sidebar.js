@@ -23,8 +23,8 @@ const Sidebar = () => {
 			<strong className="sidebar__title">PLAYLISTS</strong>
 			<hr />
 
-			{playlists?.items?.map((list) => {
-				return <SidebarOption title={list.name} />;
+			{playlists?.items?.map((playlist) => {
+				return <SidebarOption title={playlist.name} />;
 			})}
 		</div>
 	);
