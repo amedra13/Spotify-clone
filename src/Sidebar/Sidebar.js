@@ -6,9 +6,10 @@ import HomeIcon from '@material-ui/icons/Home';
 import LibraryMusicIcon from '@material-ui/icons/LibraryMusic';
 import { useDataLayerValue } from '../context/DataLayer';
 
-const Sidebar = () => {
+const Sidebar = ({ spotify }) => {
 	// eslint-disable-next-line
 	const [{ playlists }, dispatch] = useDataLayerValue();
+
 	return (
 		<div className="sidebar">
 			<img
@@ -25,7 +26,13 @@ const Sidebar = () => {
 			<hr />
 
 			{playlists?.items?.map((playlist) => {
-				return <SidebarOption title={playlist.name} />;
+				return (
+					<SidebarOption
+						title={playlist.name}
+						id={playlist.id}
+						spotify={spotify}
+					/>
+				);
 			})}
 		</div>
 	);

@@ -22,6 +22,9 @@ export const getTokenFromUrl = () => {
 			return initial;
 		}, {});
 };
+export const getPlaylistUri = (playlist) => {
+	return playlist.split(':').slice(-1)[0];
+};
 
 export const loginUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
 	'%20'
