@@ -2,9 +2,10 @@ import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import SearchIcon from '@material-ui/icons/Search';
 import './header.css';
-import { useDataLayerValue } from './DataLayer';
+import { useDataLayerValue } from '../context/DataLayer';
 
 const Header = () => {
+	// eslint-disable-next-line
 	const [{ user }, dispatch] = useDataLayerValue();
 	return (
 		<div className="header">

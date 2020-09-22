@@ -1,13 +1,14 @@
 import React from 'react';
-import Header from './Header';
+import Header from '../Header/Header';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import './body.css';
-import { useDataLayerValue } from './DataLayer';
-import SongRow from './SongRow';
+import { useDataLayerValue } from '../context/DataLayer';
+import SongRow from './SongRow/SongRow';
 
 const Body = ({ spotify }) => {
+	// eslint-disable-next-line
 	const [{ discover_weekly }, dispatch] = useDataLayerValue();
 	return (
 		<div className="body">
