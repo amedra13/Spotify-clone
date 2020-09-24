@@ -12,7 +12,7 @@ const Body = ({ spotify }) => {
 	const [{ discover_weekly }, dispatch] = useDataLayerValue();
 	return (
 		<div className="body">
-			<Header spotify={spotify} />
+			<Header />
 			<div className="body__info">
 				<img
 					src={

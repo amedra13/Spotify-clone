@@ -1,18 +1,29 @@
 import React from 'react';
 import Sidebar from '../Sidebar/Sidebar';
 import Body from '../Body/Body';
+import Home from '../Home/Home';
 import './player.css';
 import Footer from '../Footer/Footer';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 const Player = ({ spotify }) => {
 	return (
-		<div className="player">
-			<div className="player__body">
-				<Sidebar spotify={spotify} />
-				<Body spotify={spotify} />
+		<BrowserRouter>
+			<div className="player">
+				<div className="player__body">
+					<Sidebar spotify={spotify} />
+					<Switch>
+						<Route exact path="/song">
+							<Body />
+						</Route>
+						<Route exact path="/">
+							<Home />
+						</Route>
+					</Switch>
+				</div>
+				<Footer />
 			</div>
-			<Footer />
-		</div>
+		</BrowserRouter>
 	);
 };
 

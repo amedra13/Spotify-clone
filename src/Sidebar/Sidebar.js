@@ -30,6 +30,7 @@ const Sidebar = ({ spotify }) => {
 					<SidebarOption
 						title={playlist.name}
 						id={playlist.id}
+						key={playlist.id}
 						spotify={spotify}
 					/>
 				);

@@ -7,6 +7,7 @@ import { useDataLayerValue } from '../context/DataLayer';
 const Header = () => {
 	// eslint-disable-next-line
 	const [{ user }, dispatch] = useDataLayerValue();
+
 	return (
 		<div className="header">
 			<div className="header__left">

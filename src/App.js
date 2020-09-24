@@ -17,6 +17,7 @@ function App() {
 		const _token = hash.access_token;
 
 		if (_token) {
+			console.log(_token);
 			dispatch({ type: 'SET_TOKEN', token: _token });
 			spotify.setAccessToken(_token);
 			spotify.getMe().then((user) => {

@@ -3,9 +3,9 @@
 	display: flex;
 	justify-content: space-between;
 	bottom: 0;
-	height: 65px;
+	height: 45px;
 	width: 97%;
-	background-color: #282828;
+	background-color: #222222;
 	padding: 20px;
 }
 .footer__right * .MuiSlider-root {
