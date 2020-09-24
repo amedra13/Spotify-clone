@@ -17,7 +17,7 @@ const Player = ({ spotify }) => {
 							<Body />
 						</Route>
 						<Route exact path="/">
-							<Home />
+							<Home spotify={spotify} />
 						</Route>
 					</Switch>
 				</div>
