@@ -13,11 +13,8 @@ const Player = ({ spotify }) => {
 				<div className="player__body">
 					<Sidebar spotify={spotify} />
 					<Switch>
-						<Route exact path="/song">
-							<Body />
-						</Route>
 						<Route exact path="/">
-							<Home spotify={spotify} />
+							<Body />
 						</Route>
 					</Switch>
 				</div>

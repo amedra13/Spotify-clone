@@ -10,6 +10,7 @@ import SongRow from './SongRow/SongRow';
 const Body = ({ spotify }) => {
 	// eslint-disable-next-line
 	const [{ discover_weekly }, dispatch] = useDataLayerValue();
+
 	return (
 		<div className="body">
 			<Header />
