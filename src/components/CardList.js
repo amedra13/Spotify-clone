@@ -1,24 +1,50 @@
 import React, { useEffect, useState } from 'react';
 import Card from './Card';
 
-const CardList = ({ spotify, category }) => {
-	const [categoryPlayList, setCategoryPlayList] = useState(null);
+const CardList = ({ type, spotify, category }) => {
+	const [playlist, setPlayList] = useState(null);
 
 	useEffect(() => {
-		spotify.getCategoryPlaylists(category).then(
-			(response) => {
-				setCategoryPlayList(response.playlists.items);
-			},
-			(err) => {
+		switch (type) {
+			case 'Categories':
+				spotify
+					.getCategoryPlaylists(category)
+					.then((response) => {
+						setPlayList(response.playlists.items);
+					})
+					.catch((err) => {
+						console.log(err);
+					});
+				break;
+			case 'New Releases':
+				spotify.getNewReleases().then(
+					(response) => {
+						setPlayList(response.albums.items);
+					},
+					(err) => {
+						return;
+					}
+				);
+				break;
+			case 'Featured Playlist':
+				spotify.getFeaturedPlaylists().then(
+					(response) => {
+						setPlayList(response.playlists.items);
+					},
+					(err) => {
+						return;
+					}
+				);
+				break;
+			default:
 				return;
-			}
-		);
-	}, [category, spotify]);
+		}
+	}, [type, category, spotify]);
 
 	return (
 		<>
-			{categoryPlayList?.map((category) => (
-				<Card key={category.id} playlist={category} />
+			{playlist?.map((list) => (
+				<Card key={list.id} playlist={list} />
 			))}
 		</>
 	);
