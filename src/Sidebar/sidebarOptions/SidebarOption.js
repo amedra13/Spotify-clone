@@ -1,5 +1,7 @@
 import React from 'react';
 import { useDataLayerValue } from '../../context/DataLayer';
+import { Link } from 'react-router-dom';
+
 import './sidebarOption.css';
 
 const SidebarOption = ({ title, id, spotify, Icon }) => {
@@ -14,11 +16,20 @@ const SidebarOption = ({ title, id, spotify, Icon }) => {
 			});
 		});
 	};
+
+	let link = title === 'Home' ? '/' : '/player';
+
 	return (
-		<div className="sidebarOption" onClick={() => clickHandler(id)}>
-			{Icon && <Icon className="sidebarOption__icon" />}
-			{Icon ? <h4>{title}</h4> : <p>{title}</p>}
-		</div>
+		<Link
+			style={{ textDecoration: 'none' }}
+			to={link}
+			onClick={() => clickHandler(id)}
+		>
+			<div className="sidebarOption">
+				{Icon && <Icon className="sidebarOption__icon" />}
+				{Icon ? <h4>{title}</h4> : <p>{title}</p>}
+			</div>
+		</Link>
 	);
 };
 
