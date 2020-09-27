@@ -8,9 +8,21 @@ import RepeatIcon from '@material-ui/icons/Repeat';
 import PlaylistPlayIcon from '@material-ui/icons/PlaylistPlay';
 import VolumeDownIcon from '@material-ui/icons/VolumeDown';
 import Slider from '@material-ui/core/Slider';
+import { useDataLayerValue } from '../context/DataLayer';
 import './footer.css';
 
-const Footer = () => {
+const Footer = ({ spotify }) => {
+	// eslint-disable-next-line
+	const [{ activeSong, deviceID }, dispatch] = useDataLayerValue();
+
+	const clickHandler = () => {
+		console.log(activeSong, deviceID);
+		spotify
+			.play({ device_id: `${deviceID}`, context_uri: `${activeSong} ` })
+			.then((response) => {
+				console.log(response);
+			});
+	};
 	return (
 		<div className="footer">
 			<div className="footer__left">
@@ -27,7 +39,11 @@ const Footer = () => {
 			<div className="footer__center">
 				<ShuffleIcon className="footer__green" />
 				<SkipPreviousIcon className="footer__icon" />
-				<PlayCircleOutlineIcon fontSize="large" className="footer__icon" />
+				<PlayCircleOutlineIcon
+					fontSize="large"
+					className="footer__icon"
+					onClick={clickHandler}
+				/>
 				<SkipNextIcon className="footer__icon" />
 				<RepeatIcon className="footer__green" />
 			</div>

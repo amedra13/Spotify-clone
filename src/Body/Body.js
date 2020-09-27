@@ -9,7 +9,8 @@ import SongRow from './SongRow/SongRow';
 
 const Body = ({ spotify }) => {
 	// eslint-disable-next-line
-	const [{ discover_weekly }, dispatch] = useDataLayerValue();
+	const [{ discover_weekly}, dispatch] = useDataLayerValue();
+
 
 	return (
 		<div className="body">
@@ -34,9 +35,8 @@ const Body = ({ spotify }) => {
 					<FavoriteIcon fontSize="large" />
 					<MoreHorizIcon />
 				</div>
-				{/* songs */}
 				{discover_weekly?.tracks.items.map((item) => (
-					<SongRow track={item.track} />
+					<SongRow key={item.track.id} track={item.track} />
 				))}
 			</div>
 		</div>

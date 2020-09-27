@@ -44,7 +44,7 @@ const CardList = ({ type, spotify, category }) => {
 	return (
 		<>
 			{playlist?.map((list) => (
-				<Card key={list.id} playlist={list} />
+				<Card key={list.id} spotify={spotify} playlist={list} />
 			))}
 		</>
 	);

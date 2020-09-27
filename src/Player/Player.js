@@ -21,7 +21,7 @@ const Player = ({ spotify }) => {
 						</Route>
 					</Switch>
 				</div>
-				<Footer />
+				<Footer spotify={spotify}/>
 			</div>
 		</BrowserRouter>
 	);
