@@ -17,11 +17,7 @@ const Footer = ({ spotify }) => {
 
 	const clickHandler = () => {
 		console.log(activeSong, deviceID);
-		spotify
-			.play({ device_id: `${deviceID}`, context_uri: `${activeSong} ` })
-			.then((response) => {
-				console.log(response);
-			});
+		spotify.play({ device_id: `${deviceID}`, context_uri: `${activeSong} ` });
 	};
 	return (
 		<div className="footer">
