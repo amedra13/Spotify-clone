@@ -2,15 +2,18 @@
 	background-color: #222222;
 	border-radius: 10px;
 	min-width: 180px;
+	max-width: 180px;
 	height: 200px;
 	padding: 15px;
 	margin: 0 10px;
 	position: relative;
 }
 .card > h3 {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+	white-space: nowrap !important;
+	overflow: hidden !important;
+	text-overflow: ellipsis !important;
+	text-transform: none;
+	color: white;
 	margin: 5px 0;
 }
 .card > p {

@@ -1,8 +1,9 @@
 export const initialState = {
 	user: null,
 	playlists: [],
+	album: null,
 	activeSong: null,
-	deviceID: null
+	deviceID: null,
 	// token:
 	// 	'BQDWl-tbr893a0NN4z6-ywETRN2KXMBPUgRuvYsuanZZ0lgjjWUhcEpdZ7g7jR9lbX-Y13CL2ADdsoACax-AKylJCOYJ1bReur6JjJYnlIPmoJXfHMfPalyKquROggxkoB4d1nVG_4GJWdenSOhlvcB2Ag',
 };
@@ -24,21 +25,21 @@ const reducer = (state, action) => {
 				...state,
 				playlists: action.playlists,
 			};
-		case 'SET_DISCOVER_WEEKLY':
+		case 'SET_ALBUM':
 			return {
 				...state,
-				discover_weekly: action.discover_weekly,
+				album: action.selectedAlbum,
 			};
 		case 'SET_ACTIVE_SONG':
 			return {
 				...state,
-				activeSong: action.activeSong
-			}
+				activeSong: action.activeSong,
+			};
 		case 'SET_DEVICE_ID':
-			return{
+			return {
 				...state,
-				deviceID: action.deviceID
-			}
+				deviceID: action.deviceID,
+			};
 		default:
 			return state;
 	}

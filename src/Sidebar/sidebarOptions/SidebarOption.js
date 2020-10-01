@@ -11,8 +11,8 @@ const SidebarOption = ({ title, id, spotify, Icon }) => {
 		if (!id) return;
 		spotify.getPlaylist(id).then((response) => {
 			dispatch({
-				type: 'SET_DISCOVER_WEEKLY',
-				discover_weekly: response,
+				type: 'SET_ALBUM',
+				selectedAlbum: response,
 			});
 		});
 	};

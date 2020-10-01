@@ -29,14 +29,9 @@ function App() {
 					playlists: playlists,
 				});
 			});
-			// spotify.getMyDevices().then((response) => {
-			// 	if (response.devices) {
-			// 		dispatch({
-			// 			type: 'SET_DEVICE_ID',
-			// 			deviceID: response.devices[0].id,
-			// 		});
-			// 	}
-			// });
+			spotify.getMyDevices().then((response) => {
+				console.log(response);
+			});
 		}
 	}, [token, dispatch]);
 

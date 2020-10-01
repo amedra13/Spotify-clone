@@ -9,8 +9,7 @@ import SongRow from './SongRow/SongRow';
 
 const Body = ({ spotify }) => {
 	// eslint-disable-next-line
-	const [{ discover_weekly}, dispatch] = useDataLayerValue();
-
+	const [{ album }, dispatch] = useDataLayerValue();
 
 	return (
 		<div className="body">
@@ -18,15 +17,15 @@ const Body = ({ spotify }) => {
 			<div className="body__info">
 				<img
 					src={
-						discover_weekly?.images[0].url ||
+						album?.images[0].url ||
 						'https://newjams-images.scdn.co/v2/discover-weekly/j2OIQgTGzXWHMKruHd7dh8zHaKvElaof-HU6_J9ouKevuqLuNf2YRrAxMHAKd8FXkHvjHs6h2PERUXZs9jkg4dOyfXTepX2KG7i2PA8QHLsCsWn1tBz8izgMLLDwcjPQhBYMpTlcJrWMfSvu09CDsQ==/MDU6MDA6NTBUNjEtMzAtMA==/default'
 					}
-					alt={`${discover_weekly?.description}`}
+					alt={`${album?.description}`}
 				/>
 				<div className="body__infoText">
 					<strong>PlayList</strong>
-					<h2>{discover_weekly?.name}</h2>
-					<p>{discover_weekly?.description}</p>
+					<h2>{album?.name}</h2>
+					<p>{album?.description}</p>
 				</div>
 			</div>
 			<div className="body__songs">
@@ -35,7 +34,7 @@ const Body = ({ spotify }) => {
 					<FavoriteIcon fontSize="large" />
 					<MoreHorizIcon />
 				</div>
-				{discover_weekly?.tracks.items.map((item) => (
+				{album?.tracks.items.map((item) => (
 					<SongRow key={item.track.id} track={item.track} />
 				))}
 			</div>
