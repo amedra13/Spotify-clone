@@ -29,11 +29,13 @@ function App() {
 					playlists: playlists,
 				});
 			});
+
 			spotify.getMyDevices().then((response) => {
-				dispatch({
-					type: 'SET_DEVICE_ID',
-					deviceID: response.devices[0].id,
-				});
+				console.log(response);
+				// dispatch({
+				// 	type: 'SET_DEVICE_ID',
+				// 	deviceID: response.devices[0].id,
+				// });
 			});
 			// spotify.getMyDevices().then((response) => {
 			// 	console.log(response);

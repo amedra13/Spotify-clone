@@ -2,8 +2,9 @@ export const initialState = {
 	user: null,
 	playlists: [],
 	album: null,
-	activeSong: null,
-	deviceID: null,
+	footerPlaying: false,
+	activeSong: [],
+	// deviceID: null,
 	// token:
 	// 	'BQDWl-tbr893a0NN4z6-ywETRN2KXMBPUgRuvYsuanZZ0lgjjWUhcEpdZ7g7jR9lbX-Y13CL2ADdsoACax-AKylJCOYJ1bReur6JjJYnlIPmoJXfHMfPalyKquROggxkoB4d1nVG_4GJWdenSOhlvcB2Ag',
 };
@@ -35,11 +36,21 @@ const reducer = (state, action) => {
 				...state,
 				activeSong: action.activeSong,
 			};
-		case 'SET_DEVICE_ID':
+		case 'SET_SONG_PLAYING':
 			return {
 				...state,
-				deviceID: action.deviceID,
+				footerPlaying: true,
 			};
+		case 'SET_SONG_PAUSED':
+			return {
+				...state,
+				footerPlaying: false,
+			};
+		// case 'SET_DEVICE_ID':
+		// 	return {
+		// 		...state,
+		// 		deviceID: action.deviceID,
+		// 	};
 		default:
 			return state;
 	}

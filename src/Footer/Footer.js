@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
+import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 import ShuffleIcon from '@material-ui/icons/Shuffle';
@@ -13,11 +14,31 @@ import './footer.css';
 
 const Footer = ({ spotify }) => {
 	// eslint-disable-next-line
-	const [{ activeSong, deviceID }, dispatch] = useDataLayerValue();
+	const [{ activeSong, footerPlaying }, dispatch] = useDataLayerValue();
+
+	useEffect(() => {
+		if (activeSong) {
+			spotify.play({ uris: [activeSong.uri] });
+			dispatch({
+				type: 'SET_SONG_PLAYING',
+			});
+		}
+	}, [activeSong, spotify, dispatch]);
 
 	const clickHandler = () => {
-		console.log(activeSong, deviceID);
-		spotify.play({ device_id: `${deviceID}`, context_uri: `${activeSong} ` });
+		if (footerPlaying) {
+			dispatch({
+				type: 'SET_SONG_PAUSED',
+			});
+			spotify.pause();
+		} else {
+			dispatch({
+				type: 'SET_SONG_PLAYING',
+			});
+			console.log(activeSong);
+			console.log(activeSong.album.images[0].url);
+			spotify.play({ uris: [activeSong.uri] });
+		}
 	};
 	return (
 		<div className="footer">
@@ -28,18 +49,29 @@ const Footer = ({ spotify }) => {
 					alt=""
 				/>
 				<div className="footer__songInfo">
-					<h4>Yeah!</h4>
-					<p>Usher</p>
+					<h4>{activeSong ? activeSong.name : 'Name'}</h4>
+					{/* <p>
+						{activeSong?.artists.map((artist) => artist.name).join(', ')} -{' '}
+						{activeSong?.album.name}
+					</p> */}
 				</div>
 			</div>
 			<div className="footer__center">
 				<ShuffleIcon className="footer__green" />
 				<SkipPreviousIcon className="footer__icon" />
-				<PlayCircleOutlineIcon
-					fontSize="large"
-					className="footer__icon"
-					onClick={clickHandler}
-				/>
+				{footerPlaying ? (
+					<PauseCircleOutlineIcon
+						fontSize="large"
+						className="footer__icon"
+						onClick={clickHandler}
+					/>
+				) : (
+					<PlayCircleOutlineIcon
+						fontSize="large"
+						className="footer__icon"
+						onClick={clickHandler}
+					/>
+				)}
 				<SkipNextIcon className="footer__icon" />
 				<RepeatIcon className="footer__green" />
 			</div>

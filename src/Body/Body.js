@@ -35,7 +35,7 @@ const Body = ({ spotify }) => {
 					<MoreHorizIcon />
 				</div>
 				{album?.tracks.items.map((item) => (
-					<SongRow key={item.track.id} track={item.track} />
+					<SongRow key={item.track.id} track={item.track} spotify={spotify} />
 				))}
 			</div>
 		</div>

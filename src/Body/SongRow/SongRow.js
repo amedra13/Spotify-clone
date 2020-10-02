@@ -2,14 +2,20 @@ import React from 'react';
 import './songrow.css';
 import { useDataLayerValue } from '../../context/DataLayer';
 
-const SongRow = ({ track }) => {
+const SongRow = ({ track, spotify }) => {
 	// eslint-disable-next-line
-	const [{ activeSong }, dispatch] = useDataLayerValue();
+	const [{ activeSong, footerPlaying }, dispatch] = useDataLayerValue();
 
 	const clickHandler = () => {
+		if (footerPlaying) {
+			dispatch({
+				type: 'SET_SONG_PAUSED',
+			});
+		}
+		console.log(track);
 		dispatch({
 			type: 'SET_ACTIVE_SONG',
-			activeSong: track.uri,
+			activeSong: track,
 		});
 	};
 

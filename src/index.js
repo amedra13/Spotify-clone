@@ -6,10 +6,8 @@ import App from './App';
 
 import './index.css';
 ReactDOM.render(
-	<React.StrictMode>
-		<DataLayer initialState={initialState} reducer={reducer}>
-			<App />
-		</DataLayer>
-	</React.StrictMode>,
+	<DataLayer initialState={initialState} reducer={reducer}>
+		<App />
+	</DataLayer>,
 	document.getElementById('root')
 );
