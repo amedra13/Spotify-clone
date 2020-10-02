@@ -24,7 +24,7 @@ const Home = ({ spotify }) => {
 				<CardList type="New Releases" spotify={spotify} />
 			</div>
 			{categories?.map((category) => (
-				<div key={category.id}>
+				<div key={category.id} className="home__categories">
 					<h1>{category.name}</h1>
 					<div className="home__cardContainer">
 						<CardList
