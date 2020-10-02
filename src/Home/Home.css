@@ -6,8 +6,11 @@
 	background: linear-gradient(rgb(91, 87, 115), rgba(0, 0, 0, 1));
 	color: white;
 }
-.home__cardContainer::-webkit-scrollbar {
+.home::-webkit-scrollbar {
 	display: none;
+}
+.home__cardContainer::-webkit-scrollbar {
+	display: none !important;
 }
 .home__cardContainer {
 	width: 100%;
