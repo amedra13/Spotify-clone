@@ -24,7 +24,7 @@ const Card = ({ playlist, spotify }) => {
 			<div className="card">
 				<img className="card__img" src={playlist.images[0].url} alt="album" />
 				<h3>{playlist.name}</h3>
-				<p>{playlist.description || playlist.artists[0].name}</p>
+				<p>{playlist.description}</p>
 				<div className="card__playIcon">
 					<PlayCircleFilledOutlinedIcon style={{ fontSize: 50 }} />
 				</div>

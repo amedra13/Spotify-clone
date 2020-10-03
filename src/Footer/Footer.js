@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline';
@@ -16,6 +16,9 @@ import './footer.css';
 const Footer = ({ spotify }) => {
 	// eslint-disable-next-line
 	const [{ activeSong, footerPlaying }, dispatch] = useDataLayerValue();
+	const [volume, setVolume] = useState(50);
+	const [shuffle, setShuffle] = useState(false);
+	const [repeat, setRepeat] = useState(false);
 
 	useEffect(() => {
 		if (activeSong) {
@@ -49,6 +52,30 @@ const Footer = ({ spotify }) => {
 			}
 		}
 	};
+
+	const handleVolume = (e, newValue) => {
+		e.preventDefault();
+		spotify.setVolume(newValue);
+		setVolume(newValue);
+	};
+
+	const onRepeat = () => {
+		if (repeat) {
+			setRepeat(false);
+			spotify.setRepeat('off');
+		} else {
+			if (activeSong.type === 'playlist') {
+				spotify.setRepeat('context');
+			} else {
+				spotify.setRepeat('track');
+			}
+			setRepeat(true);
+		}
+	};
+	const onShuffle = () => {
+		spotify.setShuffle(!shuffle);
+		setShuffle(!shuffle);
+	};
 	return (
 		<div className="footer">
 			<div className="footer__left">
@@ -73,8 +100,14 @@ const Footer = ({ spotify }) => {
 				</div>
 			</div>
 			<div className="footer__center">
-				<ShuffleIcon className="footer__green" />
-				<SkipPreviousIcon className="footer__icon" />
+				<ShuffleIcon
+					className={shuffle && 'footer__green'}
+					onClick={onShuffle}
+				/>
+				<SkipPreviousIcon
+					className="footer__icon"
+					onClick={() => spotify.skipToPrevious()}
+				/>
 				{footerPlaying ? (
 					<PauseCircleOutlineIcon
 						fontSize="large"
@@ -88,8 +121,11 @@ const Footer = ({ spotify }) => {
 						onClick={clickHandler}
 					/>
 				)}
-				<SkipNextIcon className="footer__icon" />
-				<RepeatIcon className="footer__green" />
+				<SkipNextIcon
+					className="footer__icon"
+					onClick={() => spotify.skipToNext()}
+				/>
+				<RepeatIcon className={repeat && 'footer__green'} onClick={onRepeat} />
 			</div>
 			<div className="footer__right">
 				<Grid container spacing={2}>
@@ -100,7 +136,11 @@ const Footer = ({ spotify }) => {
 						<VolumeDownIcon />
 					</Grid>
 					<Grid item xs>
-						<Slider aria-labelledby="continuous-slider" />
+						<Slider
+							value={volume}
+							onChange={handleVolume}
+							aria-labelledby="continuous-slider"
+						/>
 					</Grid>
 				</Grid>
 			</div>
