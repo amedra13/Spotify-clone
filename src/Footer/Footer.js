@@ -82,7 +82,7 @@ const Footer = ({ spotify }) => {
 				<img
 					className="footer__albumLogo"
 					src={
-						activeSong.length === 0
+						!activeSong
 							? tempAlbum
 							: activeSong.type === 'playlist'
 							? activeSong.images[0].url
@@ -91,9 +91,9 @@ const Footer = ({ spotify }) => {
 					alt=""
 				/>
 				<div className="footer__songInfo">
-					<h4>{activeSong.length === 0 ? 'Title' : activeSong.name}</h4>
+					<h4>{activeSong?.name}</h4>
 					{/* <p>
-						{activeSong.length === 0 && activeSong.type !== 'playlist'
+						{activeSong && activeSong?.type !== 'playlist'
 							? 'artist'
 							: activeSong.artists.map((artist) => artist.name).join(', ')}
 					</p> */}

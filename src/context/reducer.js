@@ -3,7 +3,7 @@ export const initialState = {
 	playlists: [],
 	album: null,
 	footerPlaying: false,
-	activeSong: [],
+	activeSong: null,
 	// deviceID: null,
 	// token:
 	// 	'BQDWl-tbr893a0NN4z6-ywETRN2KXMBPUgRuvYsuanZZ0lgjjWUhcEpdZ7g7jR9lbX-Y13CL2ADdsoACax-AKylJCOYJ1bReur6JjJYnlIPmoJXfHMfPalyKquROggxkoB4d1nVG_4GJWdenSOhlvcB2Ag',

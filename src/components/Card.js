@@ -11,7 +11,18 @@ const Card = ({ playlist, spotify }) => {
 	const clickHandler = () => {
 		if (!playlist.id) return;
 		spotify.getPlaylist(playlist.id).then((response) => {
+			console.log(response);
 			dispatch({ type: 'SET_ALBUM', selectedAlbum: response });
+		});
+	};
+
+	const onPlayButton = () => {
+		if (!playlist.id) return;
+		spotify.getPlaylist(playlist.id).then((response) => {
+			dispatch({
+				type: 'SET_ACTIVE_SONG',
+				activeSong: response,
+			});
 		});
 	};
 
@@ -26,7 +37,10 @@ const Card = ({ playlist, spotify }) => {
 				<h3>{playlist.name}</h3>
 				<p>{playlist.description}</p>
 				<div className="card__playIcon">
-					<PlayCircleFilledOutlinedIcon style={{ fontSize: 50 }} />
+					<PlayCircleFilledOutlinedIcon
+						style={{ fontSize: 50 }}
+						onClick={onPlayButton}
+					/>
 				</div>
 			</div>
 		</Link>
