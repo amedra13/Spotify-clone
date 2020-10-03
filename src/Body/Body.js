@@ -11,6 +11,13 @@ const Body = ({ spotify }) => {
 	// eslint-disable-next-line
 	const [{ album }, dispatch] = useDataLayerValue();
 
+	const clickedAlbum = () => {
+		dispatch({
+			type: 'SET_ACTIVE_SONG',
+			activeSong: album,
+		});
+	};
+
 	return (
 		<div className="body">
 			<Header />
@@ -30,7 +37,10 @@ const Body = ({ spotify }) => {
 			</div>
 			<div className="body__songs">
 				<div className="body__icons">
-					<PlayCircleFilledIcon className="body__shuffle" />
+					<PlayCircleFilledIcon
+						className="body__shuffle"
+						onClick={clickedAlbum}
+					/>
 					<FavoriteIcon fontSize="large" />
 					<MoreHorizIcon />
 				</div>

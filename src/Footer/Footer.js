@@ -9,6 +9,7 @@ import RepeatIcon from '@material-ui/icons/Repeat';
 import PlaylistPlayIcon from '@material-ui/icons/PlaylistPlay';
 import VolumeDownIcon from '@material-ui/icons/VolumeDown';
 import Slider from '@material-ui/core/Slider';
+import tempAlbum from '../images/discover-weekly.png';
 import { useDataLayerValue } from '../context/DataLayer';
 import './footer.css';
 
@@ -18,7 +19,11 @@ const Footer = ({ spotify }) => {
 
 	useEffect(() => {
 		if (activeSong) {
-			spotify.play({ uris: [activeSong.uri] });
+			if (activeSong.type === 'playlist') {
+				spotify.play({ context_uri: activeSong.uri });
+			} else {
+				spotify.play({ uris: [activeSong.uri] });
+			}
 			dispatch({
 				type: 'SET_SONG_PLAYING',
 			});
@@ -37,8 +42,11 @@ const Footer = ({ spotify }) => {
 				type: 'SET_SONG_PLAYING',
 			});
 			console.log(activeSong);
-			console.log(activeSong.album.images[0].url);
-			spotify.play({ uris: [activeSong.uri] });
+			if (activeSong.type === 'playlist') {
+				spotify.play({ context_uri: activeSong.uri });
+			} else {
+				spotify.play({ uris: [activeSong.uri] });
+			}
 		}
 	};
 	return (
@@ -46,12 +54,22 @@ const Footer = ({ spotify }) => {
 			<div className="footer__left">
 				<img
 					className="footer__albumLogo"
-					src="https://upload.wikimedia.org/wikipedia/en/7/74/Usher_-_Confessions_album_cover.jpg"
+					src={
+						activeSong.length === 0
+							? tempAlbum
+							: activeSong.type === 'playlist'
+							? activeSong.images[0].url
+							: activeSong.album.images[0].url
+					}
 					alt=""
 				/>
 				<div className="footer__songInfo">
-					<h4>{activeSong?.name}</h4>
-					{/* <p>{!activeSong.length && activeSong.artist[0].name}</p> */}
+					<h4>{activeSong.length === 0 ? 'Title' : activeSong.name}</h4>
+					{/* <p>
+						{activeSong.length === 0 && activeSong.type !== 'playlist'
+							? 'artist'
+							: activeSong.artists.map((artist) => artist.name).join(', ')}
+					</p> */}
 				</div>
 			</div>
 			<div className="footer__center">
