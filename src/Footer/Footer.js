@@ -26,6 +26,7 @@ const Footer = ({ spotify }) => {
 	}, [activeSong, spotify, dispatch]);
 
 	const clickHandler = () => {
+		console.log(activeSong);
 		if (footerPlaying) {
 			dispatch({
 				type: 'SET_SONG_PAUSED',
@@ -49,11 +50,8 @@ const Footer = ({ spotify }) => {
 					alt=""
 				/>
 				<div className="footer__songInfo">
-					<h4>{activeSong ? activeSong.name : 'Name'}</h4>
-					{/* <p>
-						{activeSong?.artists.map((artist) => artist.name).join(', ')} -{' '}
-						{activeSong?.album.name}
-					</p> */}
+					<h4>{activeSong?.name}</h4>
+					{/* <p>{!activeSong.length && activeSong.artist[0].name}</p> */}
 				</div>
 			</div>
 			<div className="footer__center">

@@ -27,11 +27,10 @@ const Sidebar = ({ spotify }) => {
 
 			{playlists?.items?.map((playlist) => {
 				return (
-					<div className="sidebar__option">
+					<div className="sidebar__option" key={playlist.id}>
 						<SidebarOption
 							title={playlist.name}
 							id={playlist.id}
-							key={playlist.id}
 							spotify={spotify}
 						/>
 					</div>
