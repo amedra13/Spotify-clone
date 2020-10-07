@@ -19,7 +19,7 @@ const CardList = ({ type, spotify, category }) => {
 			case 'New Releases':
 				spotify.getNewReleases().then(
 					(response) => {
-						console.log(response);
+						console.log('New Releases', response);
 						setPlayList(response.albums.items);
 					},
 					(err) => {

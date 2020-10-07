@@ -10,10 +10,17 @@ const Card = ({ playlist, spotify }) => {
 
 	const clickHandler = () => {
 		if (!playlist.id) return;
-		spotify.getPlaylist(playlist.id).then((response) => {
-			console.log(response);
-			dispatch({ type: 'SET_ALBUM', selectedAlbum: response });
-		});
+		if (playlist.type === 'album') {
+			spotify.getAlbum(playlist.id).then((response) => {
+				console.log(response);
+				dispatch({ type: 'SET_ALBUM', selectedAlbum: response });
+			});
+		} else {
+			spotify.getPlaylist(playlist.id).then((response) => {
+				console.log(response);
+				dispatch({ type: 'SET_ALBUM', selectedAlbum: response });
+			});
+		}
 	};
 
 	const onPlayButton = () => {
@@ -35,7 +42,7 @@ const Card = ({ playlist, spotify }) => {
 			<div className="card">
 				<img className="card__img" src={playlist.images[0].url} alt="album" />
 				<h3>{playlist.name}</h3>
-				<p>{playlist.description}</p>
+				<p>{playlist.description || playlist.artists[0].name}</p>
 				<div className="card__playIcon">
 					<PlayCircleFilledOutlinedIcon
 						style={{ fontSize: 50 }}

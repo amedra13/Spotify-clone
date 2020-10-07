@@ -101,7 +101,7 @@ const Footer = ({ spotify }) => {
 			</div>
 			<div className="footer__center">
 				<ShuffleIcon
-					className={shuffle && 'footer__green'}
+					className={shuffle ? 'footer__green' : null}
 					onClick={onShuffle}
 				/>
 				<SkipPreviousIcon
@@ -125,7 +125,10 @@ const Footer = ({ spotify }) => {
 					className="footer__icon"
 					onClick={() => spotify.skipToNext()}
 				/>
-				<RepeatIcon className={repeat && 'footer__green'} onClick={onRepeat} />
+				<RepeatIcon
+					className={repeat ? 'footer__green' : null}
+					onClick={onRepeat}
+				/>
 			</div>
 			<div className="footer__right">
 				<Grid container spacing={2}>

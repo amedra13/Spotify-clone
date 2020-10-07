@@ -44,9 +44,10 @@ const Body = ({ spotify }) => {
 					<FavoriteIcon fontSize="large" />
 					<MoreHorizIcon />
 				</div>
-				{album?.tracks.items.map((item) => (
-					<SongRow key={item.track.id} track={item.track} spotify={spotify} />
-				))}
+				{album?.type !== 'album' &&
+					album?.tracks.items.map((item) => (
+						<SongRow key={item.track.id} track={item.track} spotify={spotify} />
+					))}
 			</div>
 		</div>
 	);
