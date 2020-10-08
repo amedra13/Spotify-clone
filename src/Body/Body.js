@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../Header/Header';
+import Grid from '@material-ui/core/Grid';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
@@ -44,6 +45,25 @@ const Body = ({ spotify }) => {
 					/>
 					<FavoriteIcon fontSize="large" />
 					<MoreHorizIcon />
+				</div>
+				<div className="body__dividers">
+					<Grid container>
+						<Grid item xs={1}>
+							#
+						</Grid>
+						<Grid item xs={4}>
+							TITLE
+						</Grid>
+						<Grid item xs={3}>
+							ALBUM
+						</Grid>
+						<Grid item xs={3}>
+							Date Added
+						</Grid>
+						<Grid item xs={1}>
+							Date Added
+						</Grid>
+					</Grid>
 				</div>
 				{album?.type !== 'album'
 					? album?.tracks.items.map((item) => (

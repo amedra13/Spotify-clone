@@ -28,8 +28,8 @@ const SongRow = ({ track, cover, album, spotify }) => {
 			<div className="songRow__info">
 				<h1>{track.name}</h1>
 				<p>
-					{track.artists.map((artist) => artist.name).join(', ')} {' - '}
-					{!album && track.album.name}
+					{track.artists.map((artist) => artist.name).join(', ')}
+					{/* {!album && track.album.name} */}
 				</p>
 			</div>
 		</div>

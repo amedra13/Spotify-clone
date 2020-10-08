@@ -54,3 +54,8 @@
 	transition: 100ms transform ease-in;
 	transform: scale(1.08);
 }
+.body__dividers {
+	margin: 0 40px;
+	padding: 5px 0;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.192);
+}
