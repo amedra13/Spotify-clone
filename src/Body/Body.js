@@ -12,6 +12,7 @@ const Body = ({ spotify }) => {
 	const [{ album }, dispatch] = useDataLayerValue();
 
 	const clickedAlbum = () => {
+		console.log(album);
 		dispatch({
 			type: 'SET_ACTIVE_SONG',
 			activeSong: album,
@@ -44,10 +45,23 @@ const Body = ({ spotify }) => {
 					<FavoriteIcon fontSize="large" />
 					<MoreHorizIcon />
 				</div>
-				{album?.type !== 'album' &&
-					album?.tracks.items.map((item) => (
-						<SongRow key={item.track.id} track={item.track} spotify={spotify} />
-					))}
+				{album?.type !== 'album'
+					? album?.tracks.items.map((item) => (
+							<SongRow
+								key={item.track.id}
+								track={item.track}
+								spotify={spotify}
+							/>
+					  ))
+					: album?.tracks.items.map((item) => (
+							<SongRow
+								key={item.id}
+								track={item}
+								cover={album.images[0].url}
+								album
+								spotify={spotify}
+							/>
+					  ))}
 			</div>
 		</div>
 	);

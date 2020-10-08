@@ -22,11 +22,12 @@ const Footer = ({ spotify }) => {
 
 	useEffect(() => {
 		if (activeSong) {
-			if (activeSong.type === 'playlist') {
+			if (activeSong.type === 'playlist' || activeSong.type === 'album') {
 				spotify.play({ context_uri: activeSong.uri });
 			} else {
 				spotify.play({ uris: [activeSong.uri] });
 			}
+
 			dispatch({
 				type: 'SET_SONG_PLAYING',
 			});
@@ -81,13 +82,14 @@ const Footer = ({ spotify }) => {
 			<div className="footer__left">
 				<img
 					className="footer__albumLogo"
-					src={
-						!activeSong
-							? tempAlbum
-							: activeSong.type === 'playlist'
-							? activeSong.images[0].url
-							: activeSong.album.images[0].url
-					}
+					// src={
+					// 	!activeSong
+					// 		? tempAlbum
+					// 		: activeSong.type === 'playlist' || activeSong.type === 'album'
+					// 		? activeSong.images[0].url
+					// 		: activeSong.album.images[0].url
+					// }
+					src={null}
 					alt=""
 				/>
 				<div className="footer__songInfo">

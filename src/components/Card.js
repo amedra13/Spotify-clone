@@ -25,12 +25,21 @@ const Card = ({ playlist, spotify }) => {
 
 	const onPlayButton = () => {
 		if (!playlist.id) return;
-		spotify.getPlaylist(playlist.id).then((response) => {
-			dispatch({
-				type: 'SET_ACTIVE_SONG',
-				activeSong: response,
+		if (playlist.type === 'album') {
+			spotify.getAlbum(playlist.id).then((response) => {
+				dispatch({
+					type: 'SET_ACTIVE_SONG',
+					activeSong: response,
+				});
 			});
-		});
+		} else {
+			spotify.getPlaylist(playlist.id).then((response) => {
+				dispatch({
+					type: 'SET_ACTIVE_SONG',
+					activeSong: response,
+				});
+			});
+		}
 	};
 
 	return (
