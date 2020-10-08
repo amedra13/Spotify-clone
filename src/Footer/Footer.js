@@ -16,6 +16,7 @@ import './footer.css';
 const Footer = ({ spotify }) => {
 	// eslint-disable-next-line
 	const [{ activeSong, footerPlaying }, dispatch] = useDataLayerValue();
+	const [image, setImage] = useState(null);
 	const [volume, setVolume] = useState(50);
 	const [shuffle, setShuffle] = useState(false);
 	const [repeat, setRepeat] = useState(false);
@@ -33,6 +34,16 @@ const Footer = ({ spotify }) => {
 			});
 		}
 	}, [activeSong, spotify, dispatch]);
+
+	useEffect(() => {
+		!activeSong
+			? setImage(tempAlbum)
+			: activeSong.type === 'playlist' || activeSong.type === 'album'
+			? setImage(activeSong.images[0].url)
+			: activeSong.album
+			? setImage(activeSong.album.images[0].url)
+			: setImage(null);
+	}, [activeSong]);
 
 	const clickHandler = () => {
 		console.log(activeSong);
@@ -80,18 +91,7 @@ const Footer = ({ spotify }) => {
 	return (
 		<div className="footer">
 			<div className="footer__left">
-				<img
-					className="footer__albumLogo"
-					// src={
-					// 	!activeSong
-					// 		? tempAlbum
-					// 		: activeSong.type === 'playlist' || activeSong.type === 'album'
-					// 		? activeSong.images[0].url
-					// 		: activeSong.album.images[0].url
-					// }
-					src={null}
-					alt=""
-				/>
+				<img className="footer__albumLogo" src={image} alt="" />
 				<div className="footer__songInfo">
 					<h4>{activeSong?.name}</h4>
 					{/* <p>
