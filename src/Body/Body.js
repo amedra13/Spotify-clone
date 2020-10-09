@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../Header/Header';
 import Grid from '@material-ui/core/Grid';
+import TimerIcon from '@material-ui/icons/Timer';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
@@ -61,7 +62,7 @@ const Body = ({ spotify }) => {
 							Date Added
 						</Grid>
 						<Grid item xs={1}>
-							Date Added
+							<TimerIcon />
 						</Grid>
 					</Grid>
 				</div>
@@ -70,6 +71,7 @@ const Body = ({ spotify }) => {
 							<SongRow
 								key={item.track.id}
 								track={item.track}
+								added={item.added_at}
 								spotify={spotify}
 							/>
 					  ))
@@ -79,6 +81,7 @@ const Body = ({ spotify }) => {
 								track={item}
 								cover={album.images[0].url}
 								album
+								releaseDate={album.release_date}
 								spotify={spotify}
 							/>
 					  ))}

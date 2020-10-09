@@ -17,10 +17,6 @@
 	opacity: 0.8;
 }
 
-.songRow__info {
-	margin-left: 20px;
-}
-
 .songRow__info > h1 {
 	font-size: 16px;
 }
