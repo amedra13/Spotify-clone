@@ -35,8 +35,6 @@
 	max-width: 300px;
 	position: relative;
 }
-
-.footer__green:hover,
 .footer__icon:hover {
 	transition: transform 0.3s ease-in-out;
 	transform: scale(1.2) !important;

@@ -107,7 +107,7 @@ const Footer = ({ spotify }) => {
 			</div>
 			<div className="footer__center">
 				<ShuffleIcon
-					className={shuffle ? 'footer__green' : null}
+					className={`footer__icon ${shuffle ? 'footer__green' : null}`}
 					onClick={onShuffle}
 				/>
 				<SkipPreviousIcon
@@ -132,7 +132,7 @@ const Footer = ({ spotify }) => {
 					onClick={() => spotify.skipToNext()}
 				/>
 				<RepeatIcon
-					className={repeat ? 'footer__green' : null}
+					className={`footer__icon ${repeat ? 'footer__green' : null}`}
 					onClick={onRepeat}
 				/>
 				<Songbar spotify={spotify} />
