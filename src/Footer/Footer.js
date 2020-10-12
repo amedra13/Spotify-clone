@@ -10,6 +10,7 @@ import PlaylistPlayIcon from '@material-ui/icons/PlaylistPlay';
 import VolumeDownIcon from '@material-ui/icons/VolumeDown';
 import Slider from '@material-ui/core/Slider';
 import tempAlbum from '../images/discover-weekly.png';
+import Songbar from './Songbar';
 import { useDataLayerValue } from '../context/DataLayer';
 import './footer.css';
 
@@ -131,6 +132,7 @@ const Footer = ({ spotify }) => {
 					className={repeat ? 'footer__green' : null}
 					onClick={onRepeat}
 				/>
+				<Songbar playing={footerPlaying} spotify={spotify} />
 			</div>
 			<div className="footer__right">
 				<Grid container spacing={2}>

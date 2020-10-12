@@ -33,6 +33,7 @@
 	align-items: center;
 	justify-content: space-between;
 	max-width: 300px;
+	position: relative;
 }
 
 .footer__green:hover,
