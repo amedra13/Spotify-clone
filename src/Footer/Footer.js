@@ -23,17 +23,20 @@ const Footer = ({ spotify }) => {
 	const [repeat, setRepeat] = useState(false);
 
 	useEffect(() => {
-		if (activeSong) {
-			if (activeSong.type === 'playlist' || activeSong.type === 'album') {
-				spotify.play({ context_uri: activeSong.uri });
-			} else {
-				spotify.play({ uris: [activeSong.uri] });
+		const playSong = async () => {
+			if (activeSong) {
+				if (activeSong.type === 'playlist' || activeSong.type === 'album') {
+					await spotify.play({ context_uri: activeSong.uri });
+				} else {
+					await spotify.play({ uris: [activeSong.uri] });
+				}
 			}
-
 			dispatch({
 				type: 'SET_SONG_PLAYING',
 			});
-		}
+		};
+
+		playSong();
 	}, [activeSong, spotify, dispatch]);
 
 	useEffect(() => {
@@ -132,7 +135,7 @@ const Footer = ({ spotify }) => {
 					className={repeat ? 'footer__green' : null}
 					onClick={onRepeat}
 				/>
-				<Songbar playing={footerPlaying} spotify={spotify} />
+				<Songbar spotify={spotify} />
 			</div>
 			<div className="footer__right">
 				<Grid container spacing={2}>

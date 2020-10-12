@@ -20,9 +20,9 @@ const SongRow = ({ track, cover, album, added, releaseDate, spotify }) => {
 	};
 
 	const msToMinutes = (ms) => {
-		let seconds = (ms / 1000) % 60;
-		let minutes = ms / 1000 / 60;
-		return `${Math.floor(minutes)}:${seconds.toFixed(0)}`;
+		let seconds = Math.floor((ms / 1000) % 60);
+		let minutes = Math.floor(ms / 1000 / 60).toFixed(0);
+		return `${minutes}:${seconds.toString().padStart(2, '0')}`;
 	};
 
 	const dateAdded = (date) => {

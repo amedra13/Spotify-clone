@@ -25,6 +25,7 @@ const Card = ({ playlist, spotify }) => {
 
 	const onPlayButton = () => {
 		if (!playlist.id) return;
+		dispatch({ type: 'SET_SONG_PAUSED' });
 		if (playlist.type === 'album') {
 			spotify.getAlbum(playlist.id).then((response) => {
 				dispatch({
