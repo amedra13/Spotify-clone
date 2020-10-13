@@ -37,6 +37,7 @@ const Footer = ({ spotify }) => {
 		};
 
 		playSong();
+		console.log(activeSong);
 	}, [activeSong, spotify, dispatch]);
 
 	useEffect(() => {
@@ -94,6 +95,17 @@ const Footer = ({ spotify }) => {
 		spotify.setShuffle(!shuffle);
 		setShuffle(!shuffle);
 	};
+
+	const skipToNext = async () => {
+		dispatch({ type: 'SET_SONG_PAUSED' });
+		await spotify.skipToNext();
+		dispatch({ type: 'SET_SONG_PLAYING' });
+	};
+	const skipToPrevious = async () => {
+		dispatch({ type: 'SET_SONG_PAUSED' });
+		await spotify.skipToPrevious();
+		dispatch({ type: 'SET_SONG_PLAYING' });
+	};
 	return (
 		<div className="footer">
 			<div className="footer__left">
@@ -114,7 +126,7 @@ const Footer = ({ spotify }) => {
 				/>
 				<SkipPreviousIcon
 					className="footer__icon"
-					onClick={() => spotify.skipToPrevious()}
+					onClick={() => skipToPrevious()}
 				/>
 				{footerPlaying ? (
 					<PauseCircleOutlineIcon
@@ -129,10 +141,7 @@ const Footer = ({ spotify }) => {
 						onClick={clickHandler}
 					/>
 				)}
-				<SkipNextIcon
-					className="footer__icon"
-					onClick={() => spotify.skipToNext()}
-				/>
+				<SkipNextIcon className="footer__icon" onClick={() => skipToNext()} />
 				<RepeatIcon
 					className={`footer__icon ${repeat ? 'footer__green' : null}`}
 					onClick={onRepeat}
