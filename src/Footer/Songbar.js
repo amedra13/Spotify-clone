@@ -12,11 +12,13 @@ const Songbar = ({ spotify }) => {
 	useEffect(() => {
 		if (footerPlaying) {
 			spotify.getMyCurrentPlayingTrack().then((response) => {
-				console.log(response);
-				let ms = response.item.duration_ms;
-				let msToSeconds = (ms / 1000).toFixed(0);
-				setSongBar(msToSeconds);
-				setEndSeconds(msToSeconds);
+				if (response) {
+					console.log(response);
+					let ms = response?.item.duration_ms;
+					let msToSeconds = (ms / 1000).toFixed(0);
+					setSongBar(msToSeconds);
+					setEndSeconds(msToSeconds);
+				}
 			});
 			setStartSeconds(0);
 			const interval = setInterval(() => {

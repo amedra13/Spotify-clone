@@ -30,10 +30,10 @@ const Footer = ({ spotify }) => {
 				} else {
 					await spotify.play({ uris: [activeSong.uri] });
 				}
+				dispatch({
+					type: 'SET_SONG_PLAYING',
+				});
 			}
-			dispatch({
-				type: 'SET_SONG_PLAYING',
-			});
 		};
 
 		playSong();
@@ -57,15 +57,17 @@ const Footer = ({ spotify }) => {
 			});
 			spotify.pause();
 		} else {
-			dispatch({
-				type: 'SET_SONG_PLAYING',
-			});
-			console.log(activeSong);
-			if (activeSong.type === 'playlist') {
-				spotify.play({ context_uri: activeSong.uri });
-			} else {
-				spotify.play({ uris: [activeSong.uri] });
+			if (activeSong) {
+				if (activeSong.type === 'playlist' || activeSong.type === 'album') {
+					spotify.play({ context_uri: activeSong.uri });
+				} else {
+					spotify.play({ uris: [activeSong.uri] });
+				}
+				dispatch({
+					type: 'SET_SONG_PLAYING',
+				});
 			}
+			console.log(activeSong);
 		}
 	};
 
