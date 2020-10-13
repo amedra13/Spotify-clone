@@ -1,0 +1,7 @@
+.search {
+	height: 100vh;
+	padding: 0 30px;
+	flex: 0.9;
+	overflow-y: overlay;
+	color: white;
+}

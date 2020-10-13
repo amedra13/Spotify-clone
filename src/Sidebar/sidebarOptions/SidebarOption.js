@@ -17,7 +17,14 @@ const SidebarOption = ({ title, id, spotify, Icon }) => {
 		});
 	};
 
-	let link = title === 'Home' ? '/' : '/player';
+	let link =
+		title === 'Home'
+			? '/'
+			: title === 'Search'
+			? '/search'
+			: title === 'Your Library'
+			? '/library'
+			: '/player';
 
 	return (
 		<Link
