@@ -4,6 +4,7 @@ export const initialState = {
 	album: null,
 	footerPlaying: false,
 	activeSong: null,
+	searchField: null,
 	// deviceID: null,
 	// token:
 	// 	'BQDWl-tbr893a0NN4z6-ywETRN2KXMBPUgRuvYsuanZZ0lgjjWUhcEpdZ7g7jR9lbX-Y13CL2ADdsoACax-AKylJCOYJ1bReur6JjJYnlIPmoJXfHMfPalyKquROggxkoB4d1nVG_4GJWdenSOhlvcB2Ag',
@@ -45,6 +46,11 @@ const reducer = (state, action) => {
 			return {
 				...state,
 				footerPlaying: false,
+			};
+		case 'SET_SEARCH_FIELD':
+			return {
+				...state,
+				searchField: action.searchInput,
 			};
 		// case 'SET_DEVICE_ID':
 		// 	return {

@@ -22,7 +22,7 @@ const Player = ({ spotify }) => {
 							<Body />
 						</Route>
 						<Route exact path="/search">
-							<Search />
+							<Search spotify={spotify} />
 						</Route>
 						<Route exact path="/library">
 							<YourLibrary />
