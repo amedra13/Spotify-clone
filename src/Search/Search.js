@@ -30,13 +30,13 @@ const Search = ({ spotify }) => {
 					searchOption={searchResults?.albums.items}
 				/>
 			</div>
-			{/* <h1>Tracks</h1>
+			<h1>Tracks</h1>
 			<div className="search__albums">
 				<CardList
 					spotify={spotify}
 					searchOption={searchResults?.tracks.items}
 				/>
-			</div> */}
+			</div>
 			{/* <h1>Artists</h1>
 			<div className="search__albums">
 				<CardList

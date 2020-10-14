@@ -60,7 +60,7 @@ const Card = ({ playlist, spotify }) => {
 		}
 	};
 
-	const imageSrc = playlist.images[0].url
+	const imageSrc = playlist.images
 		? playlist.images[0].url
 		: playlist.album.images[0].url;
 
