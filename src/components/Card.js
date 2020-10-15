@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PlayCircleFilledOutlinedIcon from '@material-ui/icons/PlayCircleFilledOutlined';
 import './Card.css';
 import { useDataLayerValue } from '../context/DataLayer';
+import ImagePlaceHolder from '../images/discover-weekly.png';
 
 const Card = ({ playlist, spotify }) => {
 	// eslint-disable-next-line
@@ -60,9 +61,22 @@ const Card = ({ playlist, spotify }) => {
 		}
 	};
 
-	const imageSrc = playlist.images
-		? playlist.images[0].url
-		: playlist.album.images[0].url;
+	const getImage = (type) => {
+		switch (type) {
+			case 'album':
+				return playlist.images[0].url || ImagePlaceHolder;
+			case 'playlist':
+				return playlist.images[0].url || ImagePlaceHolder;
+			case 'track':
+				return playlist.album.images[0].url;
+			case 'artist':
+				return playlist.images.length
+					? playlist.images[0].url
+					: ImagePlaceHolder;
+			default:
+				return;
+		}
+	};
 
 	return (
 		<Link
@@ -71,9 +85,13 @@ const Card = ({ playlist, spotify }) => {
 			to="/player"
 		>
 			<div className="card">
-				<img className="card__img" src={imageSrc} alt="album" />
+				<img className="card__img" src={getImage(playlist.type)} alt="album" />
 				<h3>{playlist.name}</h3>
-				<p>{playlist.description || playlist.artists[0].name}</p>
+				<p>
+					{playlist.type !== 'artist'
+						? playlist.description || playlist.artists[0].name
+						: null}
+				</p>
 				<div className="card__playIcon">
 					<PlayCircleFilledOutlinedIcon
 						style={{ fontSize: 50 }}

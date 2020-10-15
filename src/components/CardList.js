@@ -5,9 +5,6 @@ const CardList = ({ type, spotify, category, searchOption }) => {
 	const [playlist, setPlayList] = useState(null);
 
 	useEffect(() => {
-		const setSearch = () => {
-			return searchOption ? setPlayList(searchOption) : null;
-		};
 		switch (type) {
 			case 'Categories':
 				spotify
@@ -40,8 +37,11 @@ const CardList = ({ type, spotify, category, searchOption }) => {
 					}
 				);
 				break;
+			case 'Search':
+				setPlayList(searchOption);
+				break;
 			default:
-				setSearch();
+				return;
 		}
 	}, [type, category, spotify, searchOption]);
 
