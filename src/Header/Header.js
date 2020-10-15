@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation, useHistory } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import SearchIcon from '@material-ui/icons/Search';
 import './header.css';
@@ -8,16 +9,19 @@ const Header = () => {
 	// eslint-disable-next-line
 	const [{ user }, dispatch] = useDataLayerValue();
 	const [searchInput, setSearchInput] = useState(null);
+	const location = useLocation();
+	const history = useHistory();
 
 	useEffect(() => {
 		if (searchInput) {
 			const search = setTimeout(() => {
 				dispatch({ type: 'SET_SEARCH_FIELD', searchInput: searchInput });
-			}, 1500);
+				location.pathname !== 'search' && history.push('/search');
+			}, 300);
 
 			return () => clearTimeout(search);
 		}
-	}, [searchInput, dispatch]);
+	}, [searchInput, dispatch, history, location]);
 
 	return (
 		<div className="header">

@@ -4,7 +4,6 @@ import Grid from '@material-ui/core/Grid';
 import TimerIcon from '@material-ui/icons/Timer';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import './body.css';
 import { useDataLayerValue } from '../context/DataLayer';
 import SongRow from './SongRow/SongRow';
@@ -45,7 +44,6 @@ const Body = ({ spotify }) => {
 						onClick={clickedAlbum}
 					/>
 					<FavoriteIcon fontSize="large" />
-					<MoreHorizIcon />
 				</div>
 				<div className="body__dividers">
 					<Grid container>
