@@ -23,7 +23,7 @@ const Search = ({ spotify }) => {
 	return (
 		<div className="search">
 			<Header />
-			<h1>Albums</h1>
+			{searchResults && <h1>Albums</h1>}
 			<div className="search__albums">
 				<CardList
 					type="Search"
@@ -31,7 +31,7 @@ const Search = ({ spotify }) => {
 					searchOption={searchResults?.albums.items}
 				/>
 			</div>
-			<h1>Tracks</h1>
+			{searchField && <h1>Tracks</h1>}
 			<div className="search__albums">
 				<CardList
 					type="Search"
@@ -39,7 +39,7 @@ const Search = ({ spotify }) => {
 					searchOption={searchResults?.tracks.items}
 				/>
 			</div>
-			<h1>Artists</h1>
+			{searchField && <h1>Artists</h1>}
 			<div className="search__albums">
 				<CardList
 					type="Search"
