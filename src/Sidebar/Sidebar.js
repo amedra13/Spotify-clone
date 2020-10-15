@@ -3,7 +3,6 @@ import './sidebar.css';
 import SidebarOption from './sidebarOptions/SidebarOption';
 import SearchIcon from '@material-ui/icons/Search';
 import HomeIcon from '@material-ui/icons/Home';
-import LibraryMusicIcon from '@material-ui/icons/LibraryMusic';
 import { useDataLayerValue } from '../context/DataLayer';
 
 const Sidebar = ({ spotify }) => {
@@ -19,7 +18,6 @@ const Sidebar = ({ spotify }) => {
 			/>
 			<SidebarOption Icon={HomeIcon} title="Home" />
 			<SidebarOption Icon={SearchIcon} title="Search" />
-			<SidebarOption Icon={LibraryMusicIcon} title="Your Library" />
 
 			<br />
 			<strong className="sidebar__title">PLAYLISTS</strong>
