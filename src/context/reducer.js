@@ -50,11 +50,6 @@ const reducer = (state, action) => {
 				...state,
 				searchField: action.searchInput,
 			};
-		// case 'SET_DEVICE_ID':
-		// 	return {
-		// 		...state,
-		// 		deviceID: action.deviceID,
-		// 	};
 		default:
 			return state;
 	}

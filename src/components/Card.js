@@ -1,13 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PlayCircleFilledOutlinedIcon from '@material-ui/icons/PlayCircleFilledOutlined';
-import './Card.css';
 import { useDataLayerValue } from '../context/DataLayer';
+import PlayCircleFilledOutlinedIcon from '@material-ui/icons/PlayCircleFilledOutlined';
 import ImagePlaceHolder from '../images/discover-weekly.png';
+import './Card.css';
 
 const Card = ({ playlist, spotify }) => {
-	// eslint-disable-next-line
-	const [{ album, footerPlaying }, dispatch] = useDataLayerValue();
+	const [{ footerPlaying }, dispatch] = useDataLayerValue();
 
 	const clickHandler = () => {
 		if (!playlist.id) return;
