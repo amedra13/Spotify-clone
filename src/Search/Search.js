@@ -5,8 +5,7 @@ import CardList from '../components/CardList';
 import './Search.css';
 
 const Search = ({ spotify }) => {
-	// eslint-disable-next-line
-	const [{ searchField }, dispatch] = useDataLayerValue();
+	const [{ searchField }] = useDataLayerValue();
 	const [searchResults, setSearchResults] = useState(null);
 
 	useEffect(() => {
@@ -14,7 +13,6 @@ const Search = ({ spotify }) => {
 			spotify
 				.search(searchField, ['album', 'artist', 'track'])
 				.then((response) => {
-					console.log(response);
 					setSearchResults(response);
 				});
 		}

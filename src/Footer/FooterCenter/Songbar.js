@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDataLayerValue } from '../context/DataLayer';
+import { useDataLayerValue } from '../../context/DataLayer';
 import './Songbar.css';
 
 const Songbar = ({ spotify }) => {
