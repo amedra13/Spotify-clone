@@ -1,22 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { setImage } from '../../Util/utility';
 import tempAlbum from '../../images/discover-weekly.png';
 
 const FooterLeft = ({ song }) => {
-	const [image, setImage] = useState(null);
-
-	useEffect(() => {
-		!song
-			? setImage(tempAlbum)
-			: song.type === 'playlist' || song.type === 'album'
-			? setImage(song.images[0].url)
-			: song.album
-			? setImage(song.album.images[0].url)
-			: setImage(null);
-	}, [song]);
-
 	return (
 		<div className="footer__left">
-			<img className="footer__albumLogo" src={image} alt="" />
+			<img
+				className="footer__albumLogo"
+				src={setImage(song, tempAlbum)}
+				alt=""
+			/>
 			<div className="footer__songInfo">
 				<h4>{song?.name}</h4>
 				{/* <p>

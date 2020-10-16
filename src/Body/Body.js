@@ -1,19 +1,19 @@
 import React from 'react';
 import { useDataLayerValue } from '../context/DataLayer';
+import tempAlbum from '../images/discover-weekly.png';
 import Header from '../Header/Header';
 import Grid from '@material-ui/core/Grid';
 import TimerIcon from '@material-ui/icons/Timer';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import SongRow from './SongRow/SongRow';
+import { setImage } from '../Util/utility';
 import './body.css';
 
 const Body = ({ spotify }) => {
-	// eslint-disable-next-line
 	const [{ album }, dispatch] = useDataLayerValue();
 
 	const clickedAlbum = () => {
-		console.log(album);
 		dispatch({
 			type: 'SET_ACTIVE_SONG',
 			activeSong: album,
@@ -24,13 +24,7 @@ const Body = ({ spotify }) => {
 		<div className="body">
 			<Header />
 			<div className="body__info">
-				<img
-					src={
-						album?.images[0].url ||
-						'https://newjams-images.scdn.co/v2/discover-weekly/j2OIQgTGzXWHMKruHd7dh8zHaKvElaof-HU6_J9ouKevuqLuNf2YRrAxMHAKd8FXkHvjHs6h2PERUXZs9jkg4dOyfXTepX2KG7i2PA8QHLsCsWn1tBz8izgMLLDwcjPQhBYMpTlcJrWMfSvu09CDsQ==/MDU6MDA6NTBUNjEtMzAtMA==/default'
-					}
-					alt={`${album?.description}`}
-				/>
+				<img src={setImage(album, tempAlbum)} alt="" />
 				<div className="body__infoText">
 					<strong>PlayList</strong>
 					<h2>{album?.name}</h2>
@@ -64,7 +58,7 @@ const Body = ({ spotify }) => {
 						</Grid>
 					</Grid>
 				</div>
-				{album?.type !== 'album'
+				{/* {album?.type !== 'album'
 					? album?.tracks.items.map((item) => (
 							<SongRow
 								key={item.track.id}
@@ -82,7 +76,7 @@ const Body = ({ spotify }) => {
 								releaseDate={album.release_date}
 								spotify={spotify}
 							/>
-					  ))}
+					  ))} */}
 			</div>
 		</div>
 	);

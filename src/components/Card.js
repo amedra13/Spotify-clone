@@ -24,8 +24,12 @@ const Card = ({ playlist, spotify }) => {
 				});
 				break;
 			case 'track':
+				console.log(playlist);
+				dispatch({ type: 'SET_ALBUM', selectedAlbum: playlist });
 				return;
 			case 'artist':
+				console.log(playlist);
+				dispatch({ type: 'SET_ALBUM', selectedAlbum: playlist });
 				spotify.getArtistTopTracks(playlist.id, 'US').then((response) => {
 					console.log(response);
 				});
