@@ -5,9 +5,7 @@ export const initialState = {
 	footerPlaying: false,
 	activeSong: null,
 	searchField: null,
-	// deviceID: null,
-	// token:
-	// 	'BQDWl-tbr893a0NN4z6-ywETRN2KXMBPUgRuvYsuanZZ0lgjjWUhcEpdZ7g7jR9lbX-Y13CL2ADdsoACax-AKylJCOYJ1bReur6JjJYnlIPmoJXfHMfPalyKquROggxkoB4d1nVG_4GJWdenSOhlvcB2Ag',
+	token: null,
 };
 
 const reducer = (state, action) => {

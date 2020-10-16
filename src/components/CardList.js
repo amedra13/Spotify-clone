@@ -7,35 +7,20 @@ const CardList = ({ type, spotify, category, searchOption }) => {
 	useEffect(() => {
 		switch (type) {
 			case 'Categories':
-				spotify
-					.getCategoryPlaylists(category)
-					.then((response) => {
-						setPlayList(response.playlists.items);
-					})
-					.catch((err) => {
-						console.log(err);
-					});
+				spotify.getCategoryPlaylists(category).then((response) => {
+					setPlayList(response.playlists.items);
+				});
 				break;
 			case 'New Releases':
-				spotify.getNewReleases().then(
-					(response) => {
-						console.log('New Releases', response);
-						setPlayList(response.albums.items);
-					},
-					(err) => {
-						return;
-					}
-				);
+				spotify.getNewReleases().then((response) => {
+					console.log('New Releases', response);
+					setPlayList(response.albums.items);
+				});
 				break;
 			case 'Featured Playlist':
-				spotify.getFeaturedPlaylists().then(
-					(response) => {
-						setPlayList(response.playlists.items);
-					},
-					(err) => {
-						return;
-					}
-				);
+				spotify.getFeaturedPlaylists().then((response) => {
+					setPlayList(response.playlists.items);
+				});
 				break;
 			case 'Search':
 				setPlayList(searchOption);

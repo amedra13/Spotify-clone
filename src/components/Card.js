@@ -10,54 +10,66 @@ const Card = ({ playlist, spotify }) => {
 	const [{ album, footerPlaying }, dispatch] = useDataLayerValue();
 
 	const clickHandler = () => {
-		console.log(playlist);
 		if (!playlist.id) return;
-		if (playlist.type === 'album') {
-			spotify.getAlbum(playlist.id).then((response) => {
-				console.log(response);
-				dispatch({ type: 'SET_ALBUM', selectedAlbum: response });
-			});
-		} else if (playlist.type === 'track') {
-			return;
-		} else if (playlist.type === 'artist') {
-			spotify.getArtistTopTracks(playlist.id, 'US').then((response) => {
-				console.log(response);
-			});
-		} else {
-			spotify.getPlaylist(playlist.id).then((response) => {
-				console.log(response);
-				dispatch({ type: 'SET_ALBUM', selectedAlbum: response });
-			});
+		switch (playlist.type) {
+			case 'album':
+				spotify.getAlbum(playlist.id).then((response) => {
+					console.log(response);
+					dispatch({ type: 'SET_ALBUM', selectedAlbum: response });
+				});
+				break;
+			case 'playlist':
+				spotify.getPlaylist(playlist.id).then((response) => {
+					console.log(response);
+					dispatch({ type: 'SET_ALBUM', selectedAlbum: response });
+				});
+				break;
+			case 'track':
+				return;
+			case 'artist':
+				spotify.getArtistTopTracks(playlist.id, 'US').then((response) => {
+					console.log(response);
+				});
+				break;
+			default:
+				return;
 		}
 	};
 
 	const onPlayButton = () => {
 		if (!playlist.id) return;
 		dispatch({ type: 'SET_SONG_PAUSED' });
-		if (playlist.type === 'album') {
-			spotify.getAlbum(playlist.id).then((response) => {
+		switch (playlist.type) {
+			case 'album':
+				spotify.getAlbum(playlist.id).then((response) => {
+					dispatch({
+						type: 'SET_ACTIVE_SONG',
+						activeSong: response,
+					});
+				});
+				break;
+
+			case 'playlist':
+				spotify.getPlaylist(playlist.id).then((response) => {
+					dispatch({
+						type: 'SET_ACTIVE_SONG',
+						activeSong: response,
+					});
+				});
+				break;
+			case 'track':
+				if (footerPlaying) {
+					dispatch({
+						type: 'SET_SONG_PAUSED',
+					});
+				}
 				dispatch({
 					type: 'SET_ACTIVE_SONG',
-					activeSong: response,
+					activeSong: playlist,
 				});
-			});
-		} else if (playlist.type === 'track') {
-			if (footerPlaying) {
-				dispatch({
-					type: 'SET_SONG_PAUSED',
-				});
-			}
-			dispatch({
-				type: 'SET_ACTIVE_SONG',
-				activeSong: playlist,
-			});
-		} else {
-			spotify.getPlaylist(playlist.id).then((response) => {
-				dispatch({
-					type: 'SET_ACTIVE_SONG',
-					activeSong: response,
-				});
-			});
+				break;
+			default:
+				return;
 		}
 	};
 

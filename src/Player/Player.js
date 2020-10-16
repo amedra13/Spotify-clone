@@ -1,11 +1,11 @@
 import React from 'react';
-import Sidebar from '../Sidebar/Sidebar';
 import Home from '../Home/Home';
+import Sidebar from '../Sidebar/Sidebar';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Body from '../Body/Body';
 import Search from '../Search/Search';
-import './player.css';
 import Footer from '../Footer/Footer';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import './player.css';
 
 const Player = ({ spotify }) => {
 	return (
@@ -18,7 +18,7 @@ const Player = ({ spotify }) => {
 							<Home spotify={spotify} />
 						</Route>
 						<Route exact path="/player">
-							<Body />
+							<Body spotify={spotify} />
 						</Route>
 						<Route exact path="/search">
 							<Search spotify={spotify} />

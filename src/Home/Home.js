@@ -28,6 +28,7 @@ const Home = ({ spotify }) => {
 					<h1>{category.name}</h1>
 					<div className="home__cardContainer">
 						<CardList
+							key={category.id}
 							type="Categories"
 							spotify={spotify}
 							category={category.id}

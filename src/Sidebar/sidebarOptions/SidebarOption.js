@@ -6,7 +6,7 @@ import './sidebarOption.css';
 
 const SidebarOption = ({ title, id, spotify, Icon }) => {
 	// eslint-disable-next-line
-	const [playlistId, dispatch] = useDataLayerValue();
+	const [{ placeholder }, dispatch] = useDataLayerValue();
 	const clickHandler = (id) => {
 		if (!id) return;
 		spotify.getPlaylist(id).then((response) => {

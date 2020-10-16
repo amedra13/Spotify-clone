@@ -6,9 +6,8 @@ import './header.css';
 import { useDataLayerValue } from '../context/DataLayer';
 
 const Header = () => {
-	// eslint-disable-next-line
 	const [{ user }, dispatch] = useDataLayerValue();
-	const [searchInput, setSearchInput] = useState(null);
+	const [searchInput, setSearchInput] = useState('');
 	const location = useLocation();
 	const history = useHistory();
 

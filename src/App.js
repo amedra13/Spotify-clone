@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
+import { useDataLayerValue } from './context/DataLayer';
 import Player from './Player/Player';
 import Login from './Login/Login';
 import './App.css';
 import { getTokenFromUrl } from './spotify';
 import SpotifyWebApi from 'spotify-web-api-js';
-import { useDataLayerValue } from './context/DataLayer';
 
 const spotify = new SpotifyWebApi();
 
@@ -17,7 +17,6 @@ function App() {
 		const _token = hash.access_token;
 
 		if (_token) {
-			console.log(_token);
 			dispatch({ type: 'SET_TOKEN', token: _token });
 			spotify.setAccessToken(_token);
 			spotify.getMe().then((user) => {
@@ -29,17 +28,6 @@ function App() {
 					playlists: playlists,
 				});
 			});
-
-			spotify.getMyDevices().then((response) => {
-				console.log(response);
-				// dispatch({
-				// 	type: 'SET_DEVICE_ID',
-				// 	deviceID: response.devices[0].id,
-				// });
-			});
-			// spotify.getMyDevices().then((response) => {
-			// 	console.log(response);
-			// });
 		}
 	}, [token, dispatch]);
 

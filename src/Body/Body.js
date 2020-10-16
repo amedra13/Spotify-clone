@@ -1,12 +1,12 @@
 import React from 'react';
+import { useDataLayerValue } from '../context/DataLayer';
 import Header from '../Header/Header';
 import Grid from '@material-ui/core/Grid';
 import TimerIcon from '@material-ui/icons/Timer';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import './body.css';
-import { useDataLayerValue } from '../context/DataLayer';
 import SongRow from './SongRow/SongRow';
+import './body.css';
 
 const Body = ({ spotify }) => {
 	// eslint-disable-next-line

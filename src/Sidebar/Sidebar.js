@@ -6,8 +6,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import { useDataLayerValue } from '../context/DataLayer';
 
 const Sidebar = ({ spotify }) => {
-	// eslint-disable-next-line
-	const [{ playlists }, dispatch] = useDataLayerValue();
+	const [{ playlists }] = useDataLayerValue();
 
 	return (
 		<div className="sidebar">
