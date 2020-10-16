@@ -13,7 +13,7 @@ const FooterRight = ({ spotify }) => {
 	};
 
 	return (
-		<>
+		<div className="footer__right">
 			<Grid container spacing={2}>
 				<Grid item>
 					<VolumeDownIcon />
@@ -26,7 +26,7 @@ const FooterRight = ({ spotify }) => {
 					/>
 				</Grid>
 			</Grid>
-		</>
+		</div>
 	);
 };
 

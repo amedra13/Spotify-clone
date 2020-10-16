@@ -23,24 +23,17 @@ const Footer = ({ spotify }) => {
 		};
 
 		playSong();
-		console.log(activeSong);
 	}, [activeSong, spotify, dispatch]);
 
 	return (
 		<div className="footer">
-			<div className="footer__left">
-				<FooterLeft song={activeSong} />
-			</div>
-			<div className="footer__center">
-				<FooterCenter
-					song={activeSong}
-					playing={footerPlaying}
-					spotify={spotify}
-				/>
-			</div>
-			<div className="footer__right">
-				<FooterRight spotify={spotify} />
-			</div>
+			<FooterLeft song={activeSong} />
+			<FooterCenter
+				song={activeSong}
+				playing={footerPlaying}
+				spotify={spotify}
+			/>
+			<FooterRight spotify={spotify} />
 		</div>
 	);
 };

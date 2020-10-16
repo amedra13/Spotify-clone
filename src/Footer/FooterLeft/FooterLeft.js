@@ -15,7 +15,7 @@ const FooterLeft = ({ song }) => {
 	}, [song]);
 
 	return (
-		<>
+		<div className="footer__left">
 			<img className="footer__albumLogo" src={image} alt="" />
 			<div className="footer__songInfo">
 				<h4>{song?.name}</h4>
@@ -25,7 +25,7 @@ const FooterLeft = ({ song }) => {
 							: activeSong.artists.map((artist) => artist.name).join(', ')}
 					</p> */}
 			</div>
-		</>
+		</div>
 	);
 };
 

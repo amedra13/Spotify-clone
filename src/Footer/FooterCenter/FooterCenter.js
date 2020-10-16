@@ -15,7 +15,6 @@ const FooterCenter = ({ song, playing, spotify }) => {
 	const [repeat, setRepeat] = useState(false);
 
 	const clickHandler = () => {
-		console.log(song);
 		if (playing) {
 			dispatch({
 				type: 'SET_SONG_PAUSED',
@@ -32,7 +31,6 @@ const FooterCenter = ({ song, playing, spotify }) => {
 					type: 'SET_SONG_PLAYING',
 				});
 			}
-			console.log(song);
 		}
 	};
 
@@ -66,7 +64,7 @@ const FooterCenter = ({ song, playing, spotify }) => {
 	};
 
 	return (
-		<>
+		<div className="footer__center">
 			<ShuffleIcon
 				className={`footer__icon ${shuffle ? 'footer__green' : null}`}
 				onClick={onShuffle}
@@ -94,7 +92,7 @@ const FooterCenter = ({ song, playing, spotify }) => {
 				onClick={onRepeat}
 			/>
 			<Songbar spotify={spotify} />
-		</>
+		</div>
 	);
 };
 
