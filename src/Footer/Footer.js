@@ -11,14 +11,37 @@ const Footer = ({ spotify }) => {
 	useEffect(() => {
 		const playSong = async () => {
 			if (activeSong) {
-				if (activeSong.type === 'playlist' || activeSong.type === 'album') {
-					await spotify.play({ context_uri: activeSong.uri });
-				} else {
-					await spotify.play({ uris: [activeSong.uri] });
+				switch (activeSong.type) {
+					case 'album':
+						await spotify.play({ context_uri: activeSong.uri });
+						dispatch({
+							type: 'SET_SONG_PLAYING',
+						});
+						break;
+					case 'playlist':
+						await spotify.play({ context_uri: activeSong.uri });
+						dispatch({
+							type: 'SET_SONG_PLAYING',
+						});
+						break;
+					case 'track':
+						await spotify.play({ uris: [activeSong.uri] });
+						dispatch({
+							type: 'SET_SONG_PLAYING',
+						});
+						break;
+					case 'artist':
+						let artistTracks = await spotify
+							.getArtistTopTracks(activeSong.id, 'US')
+							.then((response) => response.tracks.map((item) => item.uri));
+						await spotify.play({ uris: artistTracks });
+						dispatch({
+							type: 'SET_SONG_PLAYING',
+						});
+						break;
+					default:
+						return;
 				}
-				dispatch({
-					type: 'SET_SONG_PLAYING',
-				});
 			}
 		};
 
@@ -27,7 +50,7 @@ const Footer = ({ spotify }) => {
 
 	return (
 		<div className="footer">
-			<FooterLeft song={activeSong} />
+			<FooterLeft spotify={spotify} />
 			<FooterCenter
 				song={activeSong}
 				playing={footerPlaying}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDataLayerValue } from '../context/DataLayer';
 import tempAlbum from '../images/discover-weekly.png';
 import Header from '../Header/Header';
@@ -12,8 +12,19 @@ import './body.css';
 
 const Body = ({ spotify }) => {
 	const [{ album }, dispatch] = useDataLayerValue();
+	const [tracks, setTracks] = useState(null);
+
+	useEffect(() => {
+		if (album?.type === 'artist') {
+			spotify.getArtistTopTracks(album.id, 'US').then((response) => {
+				setTracks(response.tracks);
+			});
+		}
+	}, [album, spotify]);
 
 	const clickedAlbum = () => {
+		console.log(album);
+		dispatch({ type: 'SET_SONG_PAUSED' });
 		dispatch({
 			type: 'SET_ACTIVE_SONG',
 			activeSong: album,
@@ -58,25 +69,32 @@ const Body = ({ spotify }) => {
 						</Grid>
 					</Grid>
 				</div>
-				{/* {album?.type !== 'album'
-					? album?.tracks.items.map((item) => (
-							<SongRow
-								key={item.track.id}
-								track={item.track}
-								added={item.added_at}
-								spotify={spotify}
-							/>
-					  ))
-					: album?.tracks.items.map((item) => (
-							<SongRow
-								key={item.id}
-								track={item}
-								cover={album.images[0].url}
-								album
-								releaseDate={album.release_date}
-								spotify={spotify}
-							/>
-					  ))} */}
+				{album?.type === 'album' ? (
+					album?.tracks.items.map((item) => (
+						<SongRow
+							key={item.id}
+							track={item}
+							cover={album.images[0].url}
+							album
+							releaseDate={album.release_date}
+							spotify={spotify}
+						/>
+					))
+				) : album?.type === 'playlist' ? (
+					album?.tracks.items.map((item) => (
+						<SongRow
+							key={item.track.id}
+							track={item.track}
+							added={item.added_at}
+							spotify={spotify}
+						/>
+					))
+				) : album?.type === 'track' ? (
+					<SongRow track={album} />
+				) : album?.type === 'artist' ? (
+					// <ArtistTracks id={album.id} spotify={spotify} />
+					tracks?.map((item) => <SongRow key={item.id} track={item} />)
+				) : null}
 			</div>
 		</div>
 	);

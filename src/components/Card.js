@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDataLayerValue } from '../context/DataLayer';
 import PlayCircleFilledOutlinedIcon from '@material-ui/icons/PlayCircleFilledOutlined';
 import ImagePlaceHolder from '../images/discover-weekly.png';
+import { getImage } from '../Util/utility';
 import './Card.css';
 
 const Card = ({ playlist, spotify }) => {
@@ -30,9 +31,6 @@ const Card = ({ playlist, spotify }) => {
 			case 'artist':
 				console.log(playlist);
 				dispatch({ type: 'SET_ALBUM', selectedAlbum: playlist });
-				spotify.getArtistTopTracks(playlist.id, 'US').then((response) => {
-					console.log(response);
-				});
 				break;
 			default:
 				return;
@@ -71,23 +69,12 @@ const Card = ({ playlist, spotify }) => {
 					activeSong: playlist,
 				});
 				break;
-			default:
-				return;
-		}
-	};
-
-	const getImage = (type) => {
-		switch (type) {
-			case 'album':
-				return playlist.images[0].url || ImagePlaceHolder;
-			case 'playlist':
-				return playlist.images[0].url || ImagePlaceHolder;
-			case 'track':
-				return playlist.album.images[0].url;
 			case 'artist':
-				return playlist.images.length
-					? playlist.images[0].url
-					: ImagePlaceHolder;
+				dispatch({
+					type: 'SET_ACTIVE_SONG',
+					activeSong: playlist,
+				});
+				break;
 			default:
 				return;
 		}
@@ -100,7 +87,11 @@ const Card = ({ playlist, spotify }) => {
 			to="/player"
 		>
 			<div className="card">
-				<img className="card__img" src={getImage(playlist.type)} alt="album" />
+				<img
+					className="card__img"
+					src={getImage(playlist, ImagePlaceHolder)}
+					alt="album"
+				/>
 				<h3>{playlist.name}</h3>
 				<p>
 					{playlist.type !== 'artist'

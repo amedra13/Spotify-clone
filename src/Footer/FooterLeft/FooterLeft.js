@@ -1,22 +1,27 @@
-import React from 'react';
-import { setImage } from '../../Util/utility';
+import React, { useState, useEffect } from 'react';
 import tempAlbum from '../../images/discover-weekly.png';
+import { useDataLayerValue } from '../../context/DataLayer';
 
-const FooterLeft = ({ song }) => {
+const FooterLeft = ({ spotify }) => {
+	const [{ footerPlaying }] = useDataLayerValue();
+	const [info, setInfo] = useState(null);
+
+	useEffect(() => {
+		if (footerPlaying) {
+			spotify.getMyCurrentPlayingTrack().then((response) => setInfo(response));
+		}
+	});
+
 	return (
 		<div className="footer__left">
 			<img
 				className="footer__albumLogo"
-				src={setImage(song, tempAlbum)}
+				src={info?.item.album.images[0].url || tempAlbum}
 				alt=""
 			/>
 			<div className="footer__songInfo">
-				<h4>{song?.name}</h4>
-				{/* <p>
-						{activeSong && activeSong?.type !== 'playlist'
-							? 'artist'
-							: activeSong.artists.map((artist) => artist.name).join(', ')}
-					</p> */}
+				<h4>{info?.item.name}</h4>
+				<p>{info?.item.artists.map((artist) => artist.name).join(', ')}</p>
 			</div>
 		</div>
 	);
