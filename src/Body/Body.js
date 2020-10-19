@@ -37,7 +37,6 @@ const Body = ({ spotify }) => {
 			<div className="body__info">
 				<img src={setImage(album, tempAlbum)} alt="" />
 				<div className="body__infoText">
-					<strong>PlayList</strong>
 					<h2>{album?.name}</h2>
 					<p>{album?.description}</p>
 				</div>
@@ -92,7 +91,6 @@ const Body = ({ spotify }) => {
 				) : album?.type === 'track' ? (
 					<SongRow track={album} />
 				) : album?.type === 'artist' ? (
-					// <ArtistTracks id={album.id} spotify={spotify} />
 					tracks?.map((item) => <SongRow key={item.id} track={item} />)
 				) : null}
 			</div>

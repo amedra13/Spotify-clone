@@ -24,3 +24,18 @@ export const getImage = (playlist, temp) => {
 			return;
 	}
 };
+
+export const msToMinutes = (ms) => {
+	let seconds = Math.floor((ms / 1000) % 60);
+	let minutes = Math.floor(ms / 1000 / 60).toFixed(0);
+	return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+};
+
+export const dateAdded = (date) => {
+	let day = new Date(date);
+	let today = new Date();
+
+	let setDays = today.getTime() - day.getTime();
+	let released = Math.floor(setDays / (24 * 60 * 60 * 1000));
+	return released;
+};

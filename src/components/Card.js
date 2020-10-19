@@ -14,22 +14,18 @@ const Card = ({ playlist, spotify }) => {
 		switch (playlist.type) {
 			case 'album':
 				spotify.getAlbum(playlist.id).then((response) => {
-					console.log(response);
 					dispatch({ type: 'SET_ALBUM', selectedAlbum: response });
 				});
 				break;
 			case 'playlist':
 				spotify.getPlaylist(playlist.id).then((response) => {
-					console.log(response);
 					dispatch({ type: 'SET_ALBUM', selectedAlbum: response });
 				});
 				break;
 			case 'track':
-				console.log(playlist);
 				dispatch({ type: 'SET_ALBUM', selectedAlbum: playlist });
 				return;
 			case 'artist':
-				console.log(playlist);
 				dispatch({ type: 'SET_ALBUM', selectedAlbum: playlist });
 				break;
 			default:

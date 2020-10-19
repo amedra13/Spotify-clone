@@ -13,9 +13,7 @@ const Songbar = ({ spotify }) => {
 		if (footerPlaying) {
 			spotify.getMyCurrentPlayingTrack().then((response) => {
 				if (response) {
-					console.log(response);
-					let ms = response?.item.duration_ms;
-					let msToSeconds = (ms / 1000).toFixed(0);
+					let msToSeconds = (response.item.duration_ms / 1000).toFixed(0);
 					setSongBar(msToSeconds);
 					setEndSeconds(msToSeconds);
 				}
@@ -25,15 +23,17 @@ const Songbar = ({ spotify }) => {
 				setStartSeconds((seconds) => seconds + 1);
 				setEndSeconds((seconds) => seconds - 1);
 			}, 1000);
-			console.log(interval);
+
 			return () => clearInterval(interval);
 		}
 	}, [footerPlaying, spotify]);
 
 	const formatSeconds = (sec) => {
-		let minutes = Math.floor(sec / 60);
-		let seconds = sec % 60;
-		return minutes.toString() + ':' + seconds.toString().padStart(2, '0');
+		return (
+			Math.floor(sec / 60).toString() +
+			':' +
+			(sec % 60).toString().padStart(2, '0')
+		);
 	};
 
 	return (

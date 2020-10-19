@@ -1,6 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import './songrow.css';
+import { msToMinutes, dateAdded } from '../../Util/utility';
 import { useDataLayerValue } from '../../context/DataLayer';
 
 const SongRow = ({ track, cover, album, added, releaseDate, spotify }) => {
@@ -12,27 +13,26 @@ const SongRow = ({ track, cover, album, added, releaseDate, spotify }) => {
 				type: 'SET_SONG_PAUSED',
 			});
 		}
-		console.log(track);
 		dispatch({
 			type: 'SET_ACTIVE_SONG',
 			activeSong: track,
 		});
 	};
 
-	const msToMinutes = (ms) => {
-		let seconds = Math.floor((ms / 1000) % 60);
-		let minutes = Math.floor(ms / 1000 / 60).toFixed(0);
-		return `${minutes}:${seconds.toString().padStart(2, '0')}`;
-	};
+	// const msToMinutes = (ms) => {
+	// 	let seconds = Math.floor((ms / 1000) % 60);
+	// 	let minutes = Math.floor(ms / 1000 / 60).toFixed(0);
+	// 	return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+	// };
 
-	const dateAdded = (date) => {
-		let day = new Date(date);
-		let today = new Date();
+	// const dateAdded = (date) => {
+	// 	let day = new Date(date);
+	// 	let today = new Date();
 
-		let setDays = today.getTime() - day.getTime();
-		let released = Math.floor(setDays / (24 * 60 * 60 * 1000));
-		return released;
-	};
+	// 	let setDays = today.getTime() - day.getTime();
+	// 	let released = Math.floor(setDays / (24 * 60 * 60 * 1000));
+	// 	return released;
+	// };
 
 	return (
 		<div className="songRow" onClick={clickHandler}>
@@ -47,10 +47,7 @@ const SongRow = ({ track, cover, album, added, releaseDate, spotify }) => {
 				<Grid item xs={4}>
 					<div className="songRow__info">
 						<h1>{track.name}</h1>
-						<p>
-							{track.artists.map((artist) => artist.name).join(', ')}
-							{/* {!album && track.album.name} */}
-						</p>
+						<p>{track.artists.map((artist) => artist.name).join(', ')}</p>
 					</div>
 				</Grid>
 				<Grid item xs={3}>

@@ -13,7 +13,6 @@ const CardList = ({ type, spotify, category, searchOption }) => {
 				break;
 			case 'New Releases':
 				spotify.getNewReleases().then((response) => {
-					console.log('New Releases', response);
 					setPlayList(response.albums.items);
 				});
 				break;
